@@ -1,14 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { Video } from './Video';
+import * as videoServices from './VideoServices';
+import VideoItem from './VideoItem';
 
 const VideoList = () => {
 
-    useEffect(() => {
+    const [videos, setVideos] = useState<Video[]>([]);
 
-    }, [])
+    const loadVideos = async () => {
+        const res = await videoServices.getVideos();
+        setVideos(res.data);
+    };
+
+    useEffect(() => {
+        loadVideos();
+    }, []);
 
     return (
         <div>
-            Video List
+            {videos.map((video) => {
+                return <VideoItem video={video}/>
+            })}
         </div>
     );
 };

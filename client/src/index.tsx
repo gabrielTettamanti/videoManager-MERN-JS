@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes} from 'react-router-dom';
 import VideoList from './components/Video/VideosList';
 import VideoForm from './components/Video/VideoForm';
+import Navbar from './components/Navbar/Navbar';
+import './index.css';
+import 'bootswatch/dist/pulse/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -12,10 +14,16 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<VideoList />} />
-        <Route path='/new-video' element={<VideoForm />} />
-      </Routes>
+
+      <Navbar />
+
+      <div className="container">
+        <Routes>
+          <Route path='/' element={<VideoList />} />
+          <Route path='/new-video' element={<VideoForm />} />
+        </Routes>
+      </div>
+
     </BrowserRouter>
   </React.StrictMode>
 );
